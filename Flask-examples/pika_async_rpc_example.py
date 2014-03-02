@@ -15,7 +15,7 @@ Things that are not included in this example.
                 self.channel.stop_consuming()
                 self.connection.close()
 
-        - You also need to stop the process loop if ypu are intentionally
+        - You also need to stop the process loop if you are intentionally
           closing the connection.
 
     - Consider implementing utility functionality for checking and getting
@@ -23,6 +23,14 @@ Things that are not included in this example.
 
         def has_response(correlation_id)
         def get_response(correlation_id)
+
+Apache/wsgi configuration.
+    - Each process you start with apache will create a new connection to
+      RabbitMQ.
+
+    - I would recommend depending on the size of the payload that you have
+      about 100 threads per process. If the payload is larger, it might be
+      worth to keep a lower thread count per process.
 
 For questions feel free to email me: me@eandersson.net
 """
