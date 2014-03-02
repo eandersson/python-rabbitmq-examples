@@ -6,6 +6,7 @@ to expand the concept.
 
 Things that are not included in this example.
     - Reconnection strategy.
+
     - Closing or re-opening the connection.
         - Keep in mind that anything you want to open or close the connection,
           you should first lock it.
@@ -13,6 +14,9 @@ Things that are not included in this example.
             with self.internal_lock
                 self.channel.stop_consuming()
                 self.connection.close()
+
+        - You also need to stop the process loop if ypu are intentionally
+          closing the connection.
 
     - Consider implementing utility functionality for checking and getting
       responses.
